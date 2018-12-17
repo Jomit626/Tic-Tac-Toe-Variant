@@ -1,4 +1,4 @@
-OBJFILE = board.o
+OBJFILE = board.o data_struct.o
 TARGET = Tic-Tac-Toe.out
 
 all: $(OBJFILE)
