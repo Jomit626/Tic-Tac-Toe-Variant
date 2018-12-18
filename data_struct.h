@@ -1,13 +1,17 @@
 #ifndef __DATA_STRUCT_H
 #define __DATA_STRUCT_H
+#include "board.h"
+#include "AI.h"
 typedef struct nodeLinklist{
     struct nodeTree *tree;
     struct nodeLinklist *next;
 } nodeLinklist_t,*linkList_t;
 
 typedef struct nodeTree{
-    double X_winRate;
-    double O_winRate;
+    double winRate[2];
+    board_t board;
+    struct decision decision;
+    int next_player;
     linkList_t branches;
 } nodeTree_t,*tree_t;
 

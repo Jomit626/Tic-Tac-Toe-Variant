@@ -1,13 +1,15 @@
-OBJFILE = board.o data_struct.o
+OBJFILE = board.o data_struct.o AI.o
 TARGET = Tic-Tac-Toe.out
-
+GCC_FLAG = -g -Wall
 all: $(OBJFILE)
-	gcc $(OBJFILE) -o $(TARGET)
+	gcc $(GCC_FLAG) $(OBJFILE) -o $(TARGET)
 
 test: $(OBJFILE) test.o
-	gcc $(OBJFILE) test.o -o test.out
+	gcc $(GCC_FLAG) $(OBJFILE) test.o -o test.out
 test.o : test.c
-	gcc -c -g ./test.c -o test.o
+	gcc $(GCC_FLAG) -c -g ./test.c -o test.o
 
 $(OBJFILE):%.o:%.c
-	gcc -c $< -o $@
+	gcc $(GCC_FLAG) -c $< -o $@
+clean:
+	rm -f  $(OBJFILE) $(TARGET)

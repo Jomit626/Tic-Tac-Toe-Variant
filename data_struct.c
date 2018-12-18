@@ -4,14 +4,17 @@
 tree_t creatTree(){
     tree_t t = (tree_t) malloc(sizeof(nodeTree_t));
     t->branches = creatLinklistNode(NULL);
-    t->X_winRate = .0;
-    t->O_winRate = .0;
+    t->winRate[0] = .0;
+    t->winRate[1] = .0;
+    t->board = 0;
+    return t;
 }
 
 linkList_t creatLinklistNode(tree_t t){
     linkList_t L = (linkList_t)malloc(sizeof(nodeLinklist_t));
     L->tree = t;
     L->next = NULL;
+    return L;
 }
 
 void freeTree(tree_t t){
@@ -44,10 +47,10 @@ void caculateWinRate(tree_t t){
     while(b->next){
         nodeCount++;
         caculateWinRate(b->next->tree);
-        XWinRate+=b->next->tree->X_winRate;
-        OWinRate+=b->next->tree->O_winRate;
+        XWinRate+=b->next->tree->winRate[X_PIECE-1];
+        OWinRate+=b->next->tree->winRate[O_PIECE-1];
         b = b->next;
     }
-    t->O_winRate = OWinRate/nodeCount;
-    t->X_winRate = XWinRate/nodeCount;
+    t->winRate[X_PIECE-1] = XWinRate/nodeCount;
+    t->winRate[O_PIECE-1] = OWinRate/nodeCount;
 }
