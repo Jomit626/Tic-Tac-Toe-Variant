@@ -1,4 +1,4 @@
-OBJFILE = board.o data_struct.o AI.o
+OBJFILE = board.o data_struct.o AI.o imalloc.o
 TARGET = Tic-Tac-Toe.out
 GCC_FLAG = -g -Wall
 all: $(OBJFILE)

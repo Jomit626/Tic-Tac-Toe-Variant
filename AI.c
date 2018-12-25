@@ -1,6 +1,8 @@
-#include "AI.h"
 #include "board.h"
 #include "data_struct.h"
+#include "imalloc.h"
+#include "AI.h"
+
 tree_t searchTree;
 int role,compititor,searchLevel;
 
@@ -89,13 +91,13 @@ void constructFullTree(tree_t t,int level){
     }
 }
 void initAI(board_t board, int irole, int icompititor,int i){
+    freeTree(searchTree);
     searchTree = creatTree();
     searchTree->board = board;
     searchTree->next_player = irole;
     role = irole;
     compititor = icompititor;
     searchLevel = i;
-
     constructFullTree(searchTree,i);
 }
 
@@ -117,11 +119,10 @@ void caculateWinRate(tree_t t){
 }
 
 decision_t makeDecisionAI(){
+    
     linkList_t b = searchTree->branches;
     decision_t d = b->next->tree->decision;
     caculateWinRate(searchTree);
-    double iwinRate = 0;
-    double ilossRate=1;
     double score = 0;
     while(b->next){
         tree_t t = b->next->tree;

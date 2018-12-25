@@ -2,10 +2,8 @@
 #define __AI_H
 #include "board.h"
 #include "data_struct.h"
-typedef struct decision{
-    int ori;
-    int dest;
-} decision_t;
+
+
 /* call initAI when AI first make decision */
 void initAI(board_t board, int irole, int icompititor, int searchLevel);
 /* call forwardAI after AI's compititor move*/

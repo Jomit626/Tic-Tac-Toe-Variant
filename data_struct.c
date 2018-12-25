@@ -1,8 +1,9 @@
 #include "data_struct.h"
 #include <stdlib.h>
+#include "imalloc.h"
 
 tree_t creatTree(){
-    tree_t t = (tree_t) malloc(sizeof(nodeTree_t));
+    tree_t t = (tree_t) imalloc(sizeof(nodeTree_t));
     t->branches = creatLinklistNode(NULL);
     t->winRate[0] = .0;
     t->winRate[1] = .0;
@@ -11,23 +12,14 @@ tree_t creatTree(){
 }
 
 linkList_t creatLinklistNode(tree_t t){
-    linkList_t L = (linkList_t)malloc(sizeof(nodeLinklist_t));
+    linkList_t L = (linkList_t)imalloc(sizeof(nodeLinklist_t));
     L->tree = t;
     L->next = NULL;
     return L;
 }
 
 void freeTree(tree_t t){
-    if(t){
-        linkList_t branches = t->branches;
-        while(branches->next){
-            linkList_t tmp = branches;
-            branches = branches->next;
-            freeTree(tmp->tree);
-            free(tmp);
-        }
-        free(t);
-    }
+    reInit();
 }
 
 void addBranche2Tree(tree_t t,tree_t branch){

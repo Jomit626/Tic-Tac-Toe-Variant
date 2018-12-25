@@ -53,3 +53,5 @@ dkms.conf
 
 #vscode
 .vscode/
+clang-5.0.exe.stackdump
+test.exe.stackdump

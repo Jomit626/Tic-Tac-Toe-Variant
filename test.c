@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "board.h"
 #include "data_struct.h"
+#include "imalloc.h"
 #include "AI.h"
 tree_t constructTree(){
     tree_t t = creatTree();
@@ -79,8 +80,9 @@ int main(int argc, char const *argv[])
     board_t b = constructBoard();
     decision_t d;
     printBoard(b);
+    imallocInit(1024 * 1024 * 40);
     while(!isWin(b)){
-        initAI(b,X_PIECE,O_PIECE,10);
+        initAI(b,X_PIECE,O_PIECE,9);
         d = makeDecisionAI();
         b = movePiece(b,d.ori,d.dest);
         printf("AI X decide to move %d to %d\n",d.ori,d.dest);
@@ -88,7 +90,7 @@ int main(int argc, char const *argv[])
 
         if(isWin(b)) break;
         getchar();
-        initAI(b,O_PIECE,X_PIECE,10);
+        initAI(b,O_PIECE,X_PIECE,9);
         d = makeDecisionAI();
         b = movePiece(b,d.ori,d.dest);
         printf("AI O decide to move %d to %d\n",d.ori,d.dest);
