@@ -27,33 +27,33 @@ board_t movePiece(board_t board,int ori,int dest){
 
 int isWin(board_t board){
     /*  horizontal */
-    board_t tmp = board & 0x3f;
-    if (tmp == 0b010101) return X_PIECE;
-    else if (tmp == 0b101010) return O_PIECE;/* 01 01 01 */
+    board_t tmp ;
+    //if (tmp == 0b010101) return X_PIECE;
+    //else if (tmp == 0b101010) return O_PIECE;/* 01 01 01 */
+//
+    //tmp = (board>>6) & 0x3f; /* Next row */
+    //if (tmp == 0b010101) return X_PIECE;
+    //else if (tmp == 0b101010) return O_PIECE;
+//
+    //tmp = (board>>12) & 0x3f; /* Next row */
+    //if (tmp == 0b010101) return X_PIECE;
+    //else if (tmp == 0b101010) return O_PIECE;
+//
+//
+    ///* vertical */
+    //tmp = board&0x30c3;/* 00 00 11:00 00 11:00 00 11 */
+    //if(tmp == 0x01041) return X_PIECE;/* 00 00 01:00 00 01:00 00 01 */
+    //else if (tmp == 0x02082)  return O_PIECE;/* 00 00 10:00 00 10:00 00 10 */
+//
+    //tmp = (board>>2)&0x30c3;/* Next col */
+    //if(tmp == 0x01041) return X_PIECE;
+    //else if (tmp == 0x02082)  return O_PIECE;
+//
+    //tmp = (board>>4)&0x30c3;/* Next col */
+    //if(tmp == 0x01041) return X_PIECE;
+    //else if (tmp == 0x02082)  return O_PIECE;
 
-    tmp = (board>>6) & 0x3f; /* Next row */
-    if (tmp == 0b010101) return X_PIECE;
-    else if (tmp == 0b101010) return O_PIECE;
-
-    tmp = (board>>12) & 0x3f; /* Next row */
-    if (tmp == 0b010101) return X_PIECE;
-    else if (tmp == 0b101010) return O_PIECE;
-
-
-    /* vertical */
-    tmp = board&0x30c3;/* 00 00 11:00 00 11:00 00 11 */
-    if(tmp == 0x01041) return X_PIECE;/* 00 00 01:00 00 01:00 00 01 */
-    else if (tmp == 0x02082)  return O_PIECE;/* 00 00 10:00 00 10:00 00 10 */
-
-    tmp = (board>>2)&0x30c3;/* Next col */
-    if(tmp == 0x01041) return X_PIECE;
-    else if (tmp == 0x02082)  return O_PIECE;
-
-    tmp = (board>>4)&0x30c3;/* Next col */
-    if(tmp == 0x01041) return X_PIECE;
-    else if (tmp == 0x02082)  return O_PIECE;
-
-
+    
     /* diagonal */
     tmp = board&0x30303;/* 11 00 00 00 11 00 00 00 11 */
     if(tmp == 0x10101) return X_PIECE;

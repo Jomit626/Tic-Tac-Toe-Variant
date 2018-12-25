@@ -34,18 +34,18 @@ tree_t constructTree(){
 
 board_t constructBoard(){
     /* 
-        X 1 2
-        O X O
-        X O 8
+        O O O
+        
+        X X X
     */
     board_t b = 0;
-    b = putPiece(b,0,X_PIECE);
-    b = putPiece(b,4,X_PIECE);
     b = putPiece(b,6,X_PIECE);
+    b = putPiece(b,7,X_PIECE);
+    b = putPiece(b,8,X_PIECE);
 
-    b = putPiece(b,3,O_PIECE);
-    b = putPiece(b,5,O_PIECE);
-    b = putPiece(b,7,O_PIECE);
+    b = putPiece(b,0,O_PIECE);
+    b = putPiece(b,1,O_PIECE);
+    b = putPiece(b,2,O_PIECE);
     return b;
 }
 void printBoard(board_t b){
@@ -80,7 +80,7 @@ int main(int argc, char const *argv[])
     decision_t d;
     printBoard(b);
     while(!isWin(b)){
-        initAI(b,X_PIECE,O_PIECE,13);
+        initAI(b,X_PIECE,O_PIECE,10);
         d = makeDecisionAI();
         b = movePiece(b,d.ori,d.dest);
         printf("AI X decide to move %d to %d\n",d.ori,d.dest);
@@ -88,7 +88,7 @@ int main(int argc, char const *argv[])
 
         if(isWin(b)) break;
         getchar();
-        initAI(b,O_PIECE,X_PIECE,12);
+        initAI(b,O_PIECE,X_PIECE,10);
         d = makeDecisionAI();
         b = movePiece(b,d.ori,d.dest);
         printf("AI O decide to move %d to %d\n",d.ori,d.dest);
