@@ -20,6 +20,5 @@ linkList_t creatLinklistNode(tree_t t);
 void freeTree(tree_t t);
 void addBranche2Tree(tree_t t,tree_t branch);
 
-void caculateWinRate(tree_t t);
 
 #endif

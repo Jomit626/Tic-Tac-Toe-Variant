@@ -98,6 +98,24 @@ void initAI(board_t board, int irole, int icompititor,int i){
 
     constructFullTree(searchTree,i);
 }
+
+void caculateWinRate(tree_t t){
+    linkList_t b = t->branches;
+    if(!b->next) return;
+
+    unsigned int nodeCount = 0;
+    double XWinRate=.0,OWinRate=.0;
+    while(b->next){
+        nodeCount++;
+        caculateWinRate(b->next->tree);
+        XWinRate+=b->next->tree->winRate[X_PIECE-1];
+        OWinRate+=b->next->tree->winRate[O_PIECE-1];
+        b = b->next;
+    }
+    t->winRate[X_PIECE-1] = XWinRate/nodeCount;
+    t->winRate[O_PIECE-1] = OWinRate/nodeCount;
+}
+
 decision_t makeDecisionAI(){
     linkList_t b = searchTree->branches;
     decision_t d = b->next->tree->decision;
